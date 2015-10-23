@@ -84,11 +84,30 @@ header ul li a img {
 	width: 100%;
 	position: relative;
 	padding: 0;
+
 }
 
 #apple {
 	position: absolute;
 	z-index: -999;
+}
+
+.guide {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.guide-ttl {
+	position: absolute;
+	top: 10%;
+	left: 30%;
+}
+
+.guide-date {
+	position: absolute;
+	bottom: 25%;
+	right: 30%;
 }
 
 .arrow {
@@ -108,9 +127,6 @@ header ul li a img {
 	color: #fff;
 }
 
-.arrow a i:after {
-	
-}
 
 /* wrap, table, section 
 ------------------------------------ */
@@ -323,6 +339,19 @@ footer small {
 	
 	section p:not(#speaker-list ul li p) {
 		text-align: left;
+	}
+
+	.guide-ttl {
+		padding: 20px 10px;
+		position: static;
+
+	}
+
+	.guide-date {
+		position: absolute;
+		bottom: 20%;
+		right: 3%;
+
 	}
 
 	#speaker-list ul li {
