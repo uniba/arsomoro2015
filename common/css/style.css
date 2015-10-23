@@ -174,13 +174,13 @@ section p {
 	font-size: 14px;
 }
 
-/* speaker-list 
+/* profile-list 
 ------------------------------------ */
-#speaker-list {
+#profile-list {
 	height: auto;
 }
 
-#speaker-list ul li {
+#profile-list ul li {
 	display:inline-block;
 	vertical-align: top; 
 	height: 280px;
@@ -188,13 +188,13 @@ section p {
 	padding: 0 20px;
 }
 
-#speaker-list ul li p.speaker-name {
+#profile-list ul li p.profile-name {
 	margin-top: 10px;
 	font-weight: bold;
 	margin-bottom: 5px;
 }
 
-#speaker-list ul li p.speaker-prof {
+#profile-list ul li p.profile-prof {
 	text-align: center;
 	font-size: 12px;
 }
@@ -251,13 +251,13 @@ footer {
 	background-color: #1F1F1F;
 	height: 30px;
 	text-align: center;
-	padding-top: 5px;
 	margin-top: 50px;
 }
 
 footer small {
 	font-size: 11px;
 	color: #fff;
+	line-height: 30px;
 
 }
 
@@ -337,7 +337,7 @@ footer small {
 		margin-bottom: 30px;
 	}
 	
-	section p:not(#speaker-list ul li p) {
+	section p:not(#profile-list ul li p) {
 		text-align: left;
 	}
 
@@ -354,7 +354,7 @@ footer small {
 
 	}
 
-	#speaker-list ul li {
+	#profile-list ul li {
 	display:inline-block;
 	vertical-align: top; 
 	height: auto;
@@ -363,7 +363,7 @@ footer small {
 	padding: 0 20px;
 	}
 	
-	#speaker-list ul li p img {
+	#profile-list ul li p img {
 		width: 90%;
 	}
 
