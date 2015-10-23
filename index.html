@@ -223,68 +223,65 @@
     <script src="common/js/threejs/three.min.js"></script>
     <script src="common/js/threejs/ColladaLoader.js"></script>
     <script>
-    /*ここに3Dを表現する記述を書いていきます*/
-    var container;
-    var scene, camera, renderer;
-    var directionalLight1, directionalLight2, ambientLight, spotLight;
-    var loader;
-    var dae1, dae2;
-    var timer;
+      /*ここに3Dを表現する記述を書いていきます*/
+      var container;
+      var scene, camera, renderer;
+      var directionalLight1, directionalLight2, ambientLight, spotLight;
+      var loader;
+      var dae1, dae2;
+      var timer;
 
-    container = document.getElementById( 'apple' );
+      container = document.getElementById( 'apple' );
 
-    scene = new THREE.Scene();
+      scene = new THREE.Scene();
 
-    //カメラ
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 10000);
-    camera.position.set(0, 300, 1000);
+      //カメラ
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 10000);
+      camera.position.set(0, 300, 1000);
 
-    //ライティング
-    // directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
-    // directionalLight1.position.set(-300, 400, 500);
-    // // directionalLight1.castShadow = true;
-    // directionalLight1.shadowCameraVisible = true;
-    // scene.add(directionalLight1);
+      //ライティング
+      // directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
+      // directionalLight1.position.set(-300, 400, 500);
+      // // directionalLight1.castShadow = true;
+      // directionalLight1.shadowCameraVisible = true;
+      // scene.add(directionalLight1);
 
-    spotLight = new THREE.SpotLight( 0xffffff, 0.5 );
-    spotLight.position.set( -300, 600, 500 );
-    spotLight.castShadow = true;
-    scene.add( spotLight );
+      spotLight = new THREE.SpotLight( 0xffffff, 0.5 );
+      spotLight.position.set( -300, 600, 500 );
+      spotLight.castShadow = true;
+      scene.add( spotLight );
 
-    directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.47);
-    directionalLight2.position.set(600, 1000, -1000);
-    // directionalLight2.castShadow = true;
-    directionalLight2.shadowCameraVisible = true;
-    scene.add(directionalLight2);
+      directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.47);
+      directionalLight2.position.set(600, 1000, -1000);
+      // directionalLight2.castShadow = true;
+      directionalLight2.shadowCameraVisible = true;
+      scene.add(directionalLight2);
 
-    ambientLight = new THREE.AmbientLight(0xc0c0c0);
-    scene.add(ambientLight);
+      ambientLight = new THREE.AmbientLight(0xc0c0c0);
+      scene.add(ambientLight);
 
 
-    //レンダラー
-    renderer = new THREE.WebGLRenderer({ antialias:true });
-    renderer.setClearColor(0xf5f5ed);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.shadowMapEnabled = true;
-    container.appendChild(renderer.domElement);
+      //レンダラー
+      renderer = new THREE.WebGLRenderer({ antialias:true });
+      renderer.setClearColor(0xf5f5ed);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.shadowMapEnabled = true;
+      container.appendChild(renderer.domElement);
 
-window.addEventListener( 'resize', onWindowResize, true );
+      window.addEventListener( 'resize', onWindowResize, true );
 
       
 
       function onWindowResize() {
-
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-
         renderer.setSize( window.innerWidth, window.innerHeight );
-
       }
 
-    //モデルデータインポート
-    loader = new THREE.ColladaLoader();
-    loader.options.convertUpAxis = true;
-    loader.load( '../models/apple/apple_tex.dae', function ( geometry ) {
+      //モデルデータインポート
+      loader = new THREE.ColladaLoader();
+      loader.options.convertUpAxis = true;
+      loader.load( '../models/apple/apple_tex.dae', function ( geometry ) {
 
         dae1 = geometry.scene;
         dae1.traverse(function(child){
@@ -298,10 +295,9 @@ window.addEventListener( 'resize', onWindowResize, true );
         // dae1.castShadow = true;
         scene.add(geometry.scene);
         animate();
-    } );
+      } );
 
-    loader.load( '../models/dropbox/dropbox.dae', function ( geometry ) {
-
+      loader.load( '../models/dropbox/dropbox.dae', function ( geometry ) {
         dae2 = geometry.scene;
         dae2.traverse(function(child){
             if (child instanceof THREE.Mesh) {
@@ -315,12 +311,11 @@ window.addEventListener( 'resize', onWindowResize, true );
         // dae2.receiveShadow = true;
         scene.add(geometry.scene);
         animate();
-    } );
+      } );
 
 
-    function animate(){
+      function animate(){
         requestAnimationFrame(animate);
-
         timer = Date.now() * 0.002;
         if (dae1) {
             dae1.rotation.y -= 0.015;
@@ -329,14 +324,15 @@ window.addEventListener( 'resize', onWindowResize, true );
             dae1.position.z = Math.sin( timer ) * 300;
         };
         render();
-    }
+      }
 
 
-    function render(){
+      function render(){
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
-    }
+      }
 
+      onWindowResize();
     </script>
 
 
