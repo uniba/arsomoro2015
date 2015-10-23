@@ -8,11 +8,11 @@
   <meta name="keywords" content="Ars Electronica,UNIBA,SONIC JAM,アルスエレクトロニカ,ユニバ,ソニックジャム,メディアアート">
   
   <meta property="og:title" content="ARSOMORO (アルス・エレクトロニカおもろーの会) 2015">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="">
   <meta property="og:description" content="アルス・エレクトロニカ フェスティバルに行ってみた人が面白かった話をする会。">
   <meta property="og:url" content="http://uniba.jp/arsomoro2015/">
   <meta property="og:site_name" content="ARSOMORO (アルス・エレクトロニカおもろーの会) 2015">
-  <meta property="og:image" content="http://uniba.jp/arsomoro2015/common/img/share.png">
+  <meta property="og:image" content="http://uniba.jp/arsomoro2015/common/img/share.jpg">
 
   <link rel="shortcut icon" href="common/img/favicon.ico">
   <link rel="stylesheet" href="common/css/reset.css" type="text/css" media="all">
@@ -297,7 +297,7 @@
       //モデルデータインポート
       loader = new THREE.ColladaLoader();
       loader.options.convertUpAxis = true;
-      loader.load( '../models/apple/apple_tex.dae', function ( geometry ) {
+      loader.load( './models/apple/apple_tex.dae', function ( geometry ) {
 
         dae1 = geometry.scene;
         dae1.traverse(function(child){
@@ -314,7 +314,7 @@
         onWindowResize();
       } );
 
-      loader.load( '../models/dropbox/dropbox.dae', function ( geometry ) {
+      loader.load( './models/dropbox/dropbox.dae', function ( geometry ) {
         dae2 = geometry.scene;
         dae2.traverse(function(child){
             if (child instanceof THREE.Mesh) {
