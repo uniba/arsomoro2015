@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
   <title>ARSOMORO 2015</title>
   <meta name="description" content="アルス・エレクトロニカ フェスティバルに行ってみた人が面白かった話をする会。アルス・エレクトロニカの本拠地であるオーストリア・リンツ市に初めて行ってみた、毎年行っている、作家として招待された、たまたま通りかかった、いつか行ってみたい、などいろいろな立場の人の体験談をする会です。聞きにきてみてください。">
   <meta name="keywords" content="Ars Electronica,UNIBA,SONIC JAM,アルスエレクトロニカ,ユニバ,ソニックジャム,メディアアート">
@@ -230,6 +230,8 @@
       var loader;
       var dae1, dae2;
       var timer;
+      var resizeQueue;
+      var stop = false;
 
       container = document.getElementById( 'apple' );
 
@@ -260,7 +262,6 @@
       ambientLight = new THREE.AmbientLight(0xc0c0c0);
       scene.add(ambientLight);
 
-
       //レンダラー
       renderer = new THREE.WebGLRenderer({ antialias:true });
       renderer.setClearColor(0xf5f5ed);
@@ -268,14 +269,29 @@
       renderer.shadowMapEnabled = true;
       container.appendChild(renderer.domElement);
 
-      window.addEventListener( 'resize', onWindowResize, true );
-
+      window.addEventListener( 'resize', onWindowResize );
+      window.addEventListener( 'orientationchange', onWindowResize );
       
 
+
       function onWindowResize() {
+        stop = true;
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        var target_width;
+        
+        clearTimeout( resizeQueue );
+
+        setTimeout( function() {
+          target_width = window.innerWidth;
+        }, 500 );
+
+        resizeQueue = setTimeout( function() {
+          // alert( target_width );
+          renderer.setSize( target_width, window.innerHeight );
+          stop = false;
+        }, 1000 );
+        
       }
 
       //モデルデータインポート
@@ -295,6 +311,7 @@
         // dae1.castShadow = true;
         scene.add(geometry.scene);
         animate();
+        onWindowResize();
       } );
 
       loader.load( '../models/dropbox/dropbox.dae', function ( geometry ) {
@@ -310,17 +327,16 @@
         dae2.rotation.y = -Math.PI/4;
         // dae2.receiveShadow = true;
         scene.add(geometry.scene);
-        animate();
+        onWindowResize();
       } );
 
 
       function animate(){
         requestAnimationFrame(animate);
         timer = Date.now() * 0.002;
-        if (dae1) {
+        if (dae1 && !stop) {
             dae1.rotation.y -= 0.015;
             dae1.position.x = Math.cos( timer ) * 150;
-            // dae1.position.y = Math.cos( timer ) * 10;
             dae1.position.z = Math.sin( timer ) * 300;
         };
         render();
@@ -332,7 +348,6 @@
         renderer.render(scene, camera);
       }
 
-      onWindowResize();
     </script>
 
 
