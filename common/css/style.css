@@ -254,6 +254,9 @@ footer small {
 
 
 
+	section, .wrap {
+		box-sizing:border-box;
+	}
 	
 	section img {
 		width: 100%;
