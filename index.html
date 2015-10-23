@@ -297,7 +297,7 @@
       //モデルデータインポート
       loader = new THREE.ColladaLoader();
       loader.options.convertUpAxis = true;
-      loader.load( 'models/apple/apple_tex.dae', function ( geometry ) {
+      loader.load( './models/apple/apple_tex.dae', function ( geometry ) {
 
         dae1 = geometry.scene;
         dae1.traverse(function(child){
@@ -314,7 +314,7 @@
         onWindowResize();
       } );
 
-      loader.load( 'models/dropbox/dropbox.dae', function ( geometry ) {
+      loader.load( './models/dropbox/dropbox.dae', function ( geometry ) {
         dae2 = geometry.scene;
         dae2.traverse(function(child){
             if (child instanceof THREE.Mesh) {
